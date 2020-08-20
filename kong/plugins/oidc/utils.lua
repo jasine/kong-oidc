@@ -41,12 +41,14 @@ end
 
 function M.get_options(config, ngx)
   local function add_host(req)
-    local host=ngx.req.get_headers()["host"]
+
+    local host= config.host
     if host then
       local h = req.headers or {}
       h['host'] = host
       req.headers = h
     end
+    ngx.log(ngx.ERR,host)
     return req
   end
 
